@@ -44,7 +44,7 @@
 	
 	    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	
-        <script src="js/NMMUFunctions.js"></script>
+        <script src="js/NMUFunctions.js"></script>
         
         <title>NMU Security</title>
     </head>
@@ -56,7 +56,7 @@
             <img src="img/bannerNMMULogo.png" alt="NMU Logo">
         </div>
         <div data-role="content">
-            <!--<form id="loginForm" class="ui-body ui-body-d ui-corner-all" data-ajax="false">-->
+
             <form id="loginForm" class="ui-body ui-body-d ui-corner-all">
                 <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="username">Enter your username:</label>
@@ -70,29 +70,12 @@
             </form>
 
         </div>
-        
-	    <!-- Login failure -->
-	    <div id="LoginFailureDialog" data-role="dialog" data-close-btn="none">
-	
-	        <div data-role="header">
-	            <h1>Login failure</h1>
-	        </div>
-	
-	        <div data-role="content">
-	            <!--<h1>Your authentication attempt failed.</h1>-->
-	            <p>Please enter your NMMU login details correctly.</p>
-	            <a href="#LoginPage" data-role="button" data-rel="back">OK</a>
-	        </div>
-	    </div>
-	    <!-- End login failure -->
-        
-        
     </div>
     
     <!-- Logged in home -->
     <div data-role="page" id="PageLoggedInHome">
         <div data-role="header" style="text-align: center;">
-            <img src="images/bannerNMMULogo.png" alt="NMMU Logo" />
+            <img src="img/bannerNMMULogo.png" alt="NMMU Logo" />
         </div>
         <div data-role="content">
             <ul data-role="listview" data-divider-theme="a" data-inset="true">
@@ -123,7 +106,7 @@
         </div>        
 	</div>   
 	<!--End logged in home --> 
-	
+
     <!-- Login failure -->
     <div id="LoginFailureDialog" data-role="dialog" data-close-btn="none">
 
@@ -156,6 +139,7 @@
     
 	
         <script type="text/javascript" src="cordova.js"></script>
+        <!--<script type="text/javascript" src="phonegap.js"></script>-->
         <!--<script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();

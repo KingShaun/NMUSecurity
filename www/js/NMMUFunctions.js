@@ -57,7 +57,7 @@ function onDeviceReady() {
             localStorage.clear("password");
             localStorage.clear("isStudent");
 
-            $.mobile.changePage("#PageHome");
+            $.mobile.changePage("#PageLogin");
             //$.mobile.activePage.trigger("create");
         });
     });

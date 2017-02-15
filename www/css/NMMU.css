@@ -1,0 +1,168 @@
+﻿.spinner
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: url(images/spinner.gif) no-repeat center center;
+    z-index: 99;
+}
+
+.AdvertImage {
+    width:240px; 
+    box-shadow: 5px 5px 2px #8d8787; 
+    -webkit-border-radius: 0.3em; 
+    -moz-border-radius: 0.3em; 
+    border-radius: 0.3em;
+}
+
+.NMMUHeaderImage
+{
+    float: right;
+    display: inline;
+    padding-top: 8px;
+    padding-right: 10px;
+}
+
+.ListviewNMMUNoBold .ui-btn.ui-btn-icon-right.ui-icon-carat-r {
+font-weight: normal;
+font-size: smaller;
+}
+
+ /*.ui-li-thumb, .ui-li-icon {
+    left: 1px;
+    max-height: 100px;
+    max-width: 80px;
+    position: absolute;
+    top: 0;
+}*/
+
+ /*#PageRegisteredAssets {
+    height   : 100%;
+    margin     : 0;
+    padding    : 0;
+}
+#PageRegisteredAssets .ui-content, #UlRegisteredAssets {
+    min-height : 100%;
+    height     : 100%;
+    margin     : 0;
+    padding    : 0;
+}*/
+
+ /*#UlRegisteredAssets .ui-li {
+    height : 10%;
+}*/
+
+  /*#UlRegisteredAssets .ui-li-thumb {
+    left: 5px;
+    max-height: 110px;
+    max-width: 80px;
+    position: absolute;
+    top: 5px;
+}*/
+
+#UlRegisteredAssets .ui-li-has-thumb>img:first-child {
+    left: 5px;
+    max-height: 110px;
+    max-width: 80px;
+    position: absolute;
+    top: 5px;
+}
+
+#UlNMMUID .ui-li-has-thumb>img:first-child {
+    left: 5px;
+    max-height: 110px;
+    max-width: 80px;
+    position: absolute;
+    top: 5px;
+}
+
+/*#NMMUThumb .ui-li-has-thumb {
+    left: 0;
+    max-height: 110px;
+    max-width: 80px;
+    position: absolute;
+    top: 0;
+}*/
+
+.StudentImage {
+    width:78px; 
+    height:100px;
+    box-shadow: 5px 5px 2px #8d8787; 
+    -webkit-border-radius: 0.3em; 
+    -moz-border-radius: 0.3em; 
+    border-radius: 0.3em;
+}
+
+.ADImage {
+    width:78px; 
+    height:110px!important;
+    box-shadow: 5px 5px 2px #8d8787; 
+    -webkit-border-radius: 0.3em; 
+    -moz-border-radius: 0.3em; 
+    border-radius: 0.3em;
+}
+
+/*.ui-page .ui-content .ui-listview .ui-li-desc {
+    white-space : normal;
+}​*/
+
+.NMMU-li {
+    white-space : normal;
+}​
+
+.NMMUPhoneNumber
+{
+    display: none;
+}
+
+.main_div_blue{
+background: -moz-linear-gradient(top,  rgba(0,48,88,1) 0%, rgba(54,107,150,1) 43%, rgba(115,174,220,0.7) 92%, rgba(125,185,232,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,48,88,1)), color-stop(43%,rgba(54,107,150,1)), color-stop(92%,rgba(115,174,220,0.7)), color-stop(100%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,48,88,1) 0%,rgba(54,107,150,1) 43%,rgba(115,174,220,0.7) 92%,rgba(125,185,232,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,48,88,1) 0%,rgba(54,107,150,1) 43%,rgba(115,174,220,0.7) 92%,rgba(125,185,232,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,48,88,1) 0%,rgba(54,107,150,1) 43%,rgba(115,174,220,0.7) 92%,rgba(125,185,232,0) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(0,48,88,1) 0%,rgba(54,107,150,1) 43%,rgba(115,174,220,0.7) 92%,rgba(125,185,232,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003058', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
+}
+
+.ui-page-theme-a .ui-bar-inherit {
+    background: #003058
+}
+/*.ui-page-theme-a .ui-bar-inherit {
+background: rgb(0,48,88);
+background: -moz-linear-gradient(top,  rgba(0,48,88,1) 6%, rgba(167,207,223,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(6%,rgba(0,48,88,1)), color-stop(100%,rgba(167,207,223,1)));
+background: -webkit-linear-gradient(top,  rgba(0,48,88,1) 6%,rgba(167,207,223,1) 100%);
+background: -o-linear-gradient(top,  rgba(0,48,88,1) 6%,rgba(167,207,223,1) 100%); 
+background: -ms-linear-gradient(top,  rgba(0,48,88,1) 6%,rgba(167,207,223,1) 100%); 
+background: linear-gradient(to bottom,  rgba(0,48,88,1) 6%,rgba(167,207,223,1) 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003058', endColorstr='#a7cfdf',GradientType=0 ); 
+
+
+
+}*/
+
+.NMMUHomeFooter {
+    background: rgb(76,76,76); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(76,76,76,1) 0%, rgba(102,102,102,1) 4%, rgba(89,89,89,1) 12%, rgba(71,71,71,1) 28%, rgba(44,44,44,1) 45%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 96%, rgba(0,0,0,1) 97%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(76,76,76,1)), color-stop(4%,rgba(102,102,102,1)), color-stop(12%,rgba(89,89,89,1)), color-stop(28%,rgba(71,71,71,1)), color-stop(45%,rgba(44,44,44,1)), color-stop(60%,rgba(17,17,17,1)), color-stop(76%,rgba(43,43,43,1)), color-stop(91%,rgba(28,28,28,1)), color-stop(96%,rgba(19,19,19,1)), color-stop(97%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(76,76,76,1) 0%,rgba(102,102,102,1) 4%,rgba(89,89,89,1) 12%,rgba(71,71,71,1) 28%,rgba(44,44,44,1) 45%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 96%,rgba(0,0,0,1) 97%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(76,76,76,1) 0%,rgba(102,102,102,1) 4%,rgba(89,89,89,1) 12%,rgba(71,71,71,1) 28%,rgba(44,44,44,1) 45%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 96%,rgba(0,0,0,1) 97%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(76,76,76,1) 0%,rgba(102,102,102,1) 4%,rgba(89,89,89,1) 12%,rgba(71,71,71,1) 28%,rgba(44,44,44,1) 45%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 96%,rgba(0,0,0,1) 97%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(76,76,76,1) 0%,rgba(102,102,102,1) 4%,rgba(89,89,89,1) 12%,rgba(71,71,71,1) 28%,rgba(44,44,44,1) 45%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 96%,rgba(0,0,0,1) 97%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+.ui-title {
+    color: white;
+    font-weight:normal;
+}
+
+.ui-page {
+    -moz-backface-visibility: hidden;
+}
+
+
+.footer {position:fixed;z-index:10;bottom:0;width:100%}

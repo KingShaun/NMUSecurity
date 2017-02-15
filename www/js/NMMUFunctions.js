@@ -41,18 +41,13 @@ function onDeviceReady() {
 
     // ########################## Login ################################ 
 
+    //NMMU LOGIC: Run the checkPreAuth function to determine whether the user is logged in and that the details are still correct. If so, auto login.
+        checkPreAuth();
+
     //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
         $("#loginForm").on("submit", handleLogin);
-    ////NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
-    //$(document).on('pageinit', '#PageLogin', function () {
-    //    $("#loginForm").on("submit", handleLogin);
-    //});
 
-    //NMMU LOGIC: Run the checkPreAuth function to determine whether the user is logged in and that the details are still correct. If so, auto login.
-    //We want this running everytime we hit the page, so pagebeforeshow
-    $(document).on('pagebeforeshow', '#PageLogin', function () {
-        checkPreAuth();
-    });
+
 
     //NMMU LOGIC: Set the  PageLoggedInHome's logout click to clear localStorage. 
     $(document).on('pageinit', '#PageLoggedInHome', function () {

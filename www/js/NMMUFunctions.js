@@ -40,10 +40,13 @@
 function onDeviceReady() {
 
     // ########################## Login ################################ 
+
     //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
-    $(document).on('pageinit', '#PageLogin', function () {
         $("#loginForm").on("submit", handleLogin);
-    });
+    ////NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
+    //$(document).on('pageinit', '#PageLogin', function () {
+    //    $("#loginForm").on("submit", handleLogin);
+    //});
 
     //NMMU LOGIC: Run the checkPreAuth function to determine whether the user is logged in and that the details are still correct. If so, auto login.
     //We want this running everytime we hit the page, so pagebeforeshow
@@ -288,8 +291,6 @@ function refreshPage() {
 
 
 function handleLogin() {
-
-    alert("handling login....");
 
     var form = $("#loginForm");
     //disable the button so we can't resubmit while we wait

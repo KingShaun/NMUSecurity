@@ -39,11 +39,13 @@
 
 function onDeviceReady() {
 
+    alert("I am ready!");
+
     // ########################## Login ################################ 
     //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
-    $(document).on('pageinit', '#PageLogin', function () {
+
         $("#loginForm").on("submit", handleLogin);
-    });
+
 }
 
 function init() {
@@ -66,5 +68,5 @@ var hideLoader = function () {
 }
 
 function handleLogin() {
-    navigator.notification.alert("Handling Login.", function () { });
+    alert("I am handling!");
 }

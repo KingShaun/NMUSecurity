@@ -41,13 +41,21 @@ function onDeviceReady() {
 
     // ########################## Login ################################ 
 
+
+    //Hide the form for checks to happen
+    $.mobile.loading('show');
+    var form = $("#loginForm");
+    form.css('display', 'none');
+
+
     //NMMU LOGIC: Run the checkPreAuth function to determine whether the user is logged in and that the details are still correct. If so, auto login.
         checkPreAuth();
 
     //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
         $("#loginForm").on("submit", handleLogin);
 
-
+    
+    $.mobile.loading('hide');
 
     //NMMU LOGIC: Set the  PageLoggedInHome's logout click to clear localStorage. 
     $(document).on('pageinit', '#PageLoggedInHome', function () {

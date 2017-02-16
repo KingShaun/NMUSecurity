@@ -50,7 +50,49 @@
     </head>
 <body onload="init()">
 
-
+    <!-- Home -->
+    <div data-role="page" id="PageHome">
+        <div data-role="header" style="text-align: center;">
+            <img src="img/bannerNMMULogo.png" alt="NMMU Logo" />
+        </div>
+        <div id="ListviewSignedOut">
+            <div data-role="content" style="padding-bottom:50px">
+                <p>In order to use this app, you will have to log in using your NMU username and password.</p>
+                <ul data-role="listview" data-inset="true" class="ListviewNMMUNoBold">
+                    <li>
+                        <a href="#PageLogin">Log in</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="ListviewSignedIn">
+            <div data-role="content" style="padding-bottom:50px">
+                <p>You are signed in...</p>
+                <ul data-role="listview" data-divider-theme="a" data-inset="true">
+                    <li data-role="list-divider">Help lines</li>
+                    <li data-icon="phone"><a href="tel:0415043636">NMMU Security</a></li>
+                    <li data-icon="phone"><a href="tel:0415045000">Humewood police</a></li>
+                    <li data-icon="phone"><a href="tel:0415851555">Fire Brigade</a></li>
+                    <li data-role="list-divider" role="heading">Rescue services</li>
+                    <li data-icon="phone"><a href="tel:0415813585">Aviation</a></li>
+                    <li data-icon="phone"><a href="tel:0415071911">Sea</a></li>
+                    <li data-role="list-divider" role="heading">Crisis lines</li>
+                    <li data-icon="phone"><a href="tel:0824285009">NMMU Helpline</a></li>
+                    <li data-icon="phone"><a href="tel:0414533204">Department Of Welfare</a></li>
+                    <li data-icon="phone"><a href="tel:0415858565">Life Line</a></li>
+                    <li data-icon="phone"><a href="tel:0415855581">Crisis Line</a></li>
+                    <li data-icon="phone"><a href="tel:0415858565">Rape Crisis</a></li>
+                    <li data-icon="phone"><a href="tel:0800055555">Child Line</a></li>
+                </ul>
+            </div>
+            <div data-role="footer" class="footer">
+                <div data-role="controlgroup" data-type="horizontal" style="text-align: center;">
+                    <a href="#PageLogin" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-left ui-shadow LogoutButton">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Home -->
 
     <!-- Login -->
     <div data-role="page" id="PageLogin">

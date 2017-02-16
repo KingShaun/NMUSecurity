@@ -49,19 +49,19 @@ function onDeviceReady() {
         checkPreAuth();
 
     //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
-        $("#loginForm").on("submit", handleLogin);
+    //$("#loginForm").on("submit", handleLogin);
 
     
         $.mobile.loading('hide');
 
-    //NMMU LOGIC: On ready and well as page init; Set the login form's submit to fire the handleLogin function. 
+    //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
      $(document).on('pageinit', '#PageLogin', function () {
             $("#loginForm").on("submit", handleLogin);
         });
 
 
     //NMMU LOGIC: Set the  PageLoggedInHome's logout click to clear localStorage. 
-    $(document).on('pageinit', '#PageLoggedInHome', function () {
+     $(document).on('pageinit', '#PageHome', function () {
 
         $(".LogoutButton").on("click", function () {
             localStorage.clear("username");
@@ -74,17 +74,17 @@ function onDeviceReady() {
     });
 
     // Determine whether to show staff or student menu
-    //$(document).on('pagebeforeshow', '#PageLoggedInHome', function () {
-    //    //Show student list items
-    //    if (window.localStorage["isStudent"] == "true") {
-    //        $("#ListviewStaff").css('display', 'none');
-    //        $("#ListviewStudents").css('display', 'block');
-    //    }
-    //    else {
-    //        $("#ListviewStaff").css('display', 'block');
-    //        $("#ListviewStudents").css('display', 'none');
-    //    }
-    //});
+     $(document).on('pagebeforeshow', '#PageHome', function () {
+        //Show student list items
+        if (window.localStorage["username"] != '') {
+            $("#ListviewSignedOut").css('display', 'none');
+            $("#ListviewSignedIn").css('display', 'block');
+        }
+        else {
+            $("#ListviewSignedOut").css('display', 'block');
+            $("#ListviewSignedIn").css('display', 'none');
+        }
+    });
     // ########################## End Login ############################ 
 
 
@@ -324,7 +324,7 @@ function handleLogin() {
                 window.localStorage["isStudent"] = msg.d.IsStudent;
 
                 //Go to My NMMU menu page
-                $.mobile.changePage("#PageLoggedInHome");
+                $.mobile.changePage("#PageHome");
             }
             else {
                 //Login fail and local values exist = Password has changed. Clear local values

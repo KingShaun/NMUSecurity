@@ -82,7 +82,7 @@ function onDeviceReady() {
      });
 
     //NMMU LOGIC: Set the  PageLoggedInHome's logout click to clear localStorage. 
-     $(document).on('pageinit', '#PageHome', function () {
+     $(document).on('pageinit', '#PageLoggedInHome', function () {
 
         $(".LogoutButton").on("click", function () {
             localStorage.clear("username");

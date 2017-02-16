@@ -75,20 +75,21 @@
         </div>
         <div data-role="footer" class="footer">
             <div data-role="controlgroup" data-type="horizontal" style="text-align: center;">
-                <a href="#PageLogin" class="ui-btn ui-btn-inline ui-icon-user ui-btn-icon-left ui-shadow">HELP ME!</a>
+                <a href="#PageLogin" class="ui-btn ui-btn-inline ui-icon-user ui-btn-icon-left ui-shadow">Sign in</a>
             </div>
         </div>
     </div>
     <!-- End Home -->
-
     <!-- Signed In Home -->
     <div data-role="page" id="PageLoggedInHome">
         <div data-role="header" style="text-align: center;">
             <h1>Nelson Mandela University</h1>
         </div>
-        <a href="#" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-left ui-shadow">HELP ME!</a>
+        <div style="text-align: center;">
+            <a href="#" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-left ui-shadow">HELP ME!</a>
+        </div>
         <div data-role="content" style="padding-bottom:50px">
-            <ul data-role="listview" data-inset="true" class="ListviewNMMUNoBold">
+            <ul data-role="listview" data-divider-theme="a" data-inset="true" class="ListviewNMMUNoBold">
                 <li data-role="list-divider">Help lines</li>
                 <li data-icon="phone"><a href="tel:0415043636">NMMU Security</a></li>
                 <li data-icon="phone"><a href="tel:0415045000">Humewood police</a></li>
@@ -107,12 +108,11 @@
         </div>
         <div data-role="footer" class="footer">
             <div data-role="controlgroup" data-type="horizontal" style="text-align: center;">
-                <a href="#PageLogin" class="ui-btn ui-btn-inline ui-icon-user ui-btn-icon-left ui-shadow">Log in</a>
+                <a href="#PageHome" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-left ui-shadow LogoutButton">Logout</a>
             </div>
         </div>
     </div>
     <!-- End Signed In Home -->
-
     <!-- Login -->
     <div data-role="page" id="PageLogin">
 
@@ -138,7 +138,6 @@
         <!-- Content -->
     </div>
     <!-- End Login -->
-
     <!-- Login failure -->
     <div id="LoginFailureDialog" data-role="dialog" data-close-btn="none">
 

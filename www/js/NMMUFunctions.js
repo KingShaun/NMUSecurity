@@ -86,17 +86,17 @@ function onDeviceReady() {
     });
 
     // Determine whether to show staff or student menu
-    // $(document).on('pagebeforeshow', '#PageHome', function () {
-    //    //Show student list items
-    //     if (window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
-    //        $("#ListviewSignedOut").css('display', 'none');
-    //        $("#ListviewSignedIn").css('display', 'block');
-    //    }
-    //    else {
-    //        $("#ListviewSignedOut").css('display', 'block');
-    //        $("#ListviewSignedIn").css('display', 'none');
-    //    }
-    //});
+     $(document).on('pagebeforeshow', '#PageHome', function () {
+        //Show student list items
+         if (window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
+            $("#ListviewSignedOut").css('display', 'none');
+            $("#ListviewSignedIn").css('display', 'block');
+        }
+        else {
+            $("#ListviewSignedOut").css('display', 'block');
+            $("#ListviewSignedIn").css('display', 'none');
+        }
+    });
     // ########################## End Login ############################ 
 
 

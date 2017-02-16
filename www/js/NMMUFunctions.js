@@ -80,7 +80,7 @@ function onDeviceReady() {
             localStorage.clear("password");
             localStorage.clear("isStudent");
 
-            $.mobile.changePage("#PageLogin");
+            $.mobile.changePage("#PageHome");
             //$.mobile.activePage.trigger("create");
         });
     });

@@ -43,10 +43,12 @@ function onDeviceReady() {
 
 
     ////Hide the form for checks to happen
-    //$.mobile.loading('show');
+    $.mobile.loading('show');
 
-    ////NMMU LOGIC: Run the checkPreAuth function to determine whether the user is logged in and that the details are still correct. If so, auto login.
-    //checkPreAuth();
+    //NMMU LOGIC: Run the checkPreAuth function to determine whether the user is logged in and that the details are still correct. If so, auto login.
+    checkPreAuth();
+
+    $.mobile.loading('hide');
 
     //$(".LogoutButton").on("click", function () {
     //    localStorage.clear("username");
@@ -68,7 +70,7 @@ function onDeviceReady() {
     ////$("#loginForm").on("submit", handleLogin);
 
     
-    //    $.mobile.loading('hide');
+   
 
     //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
      $(document).on('pageinit', '#PageLogin', function () {
@@ -190,7 +192,7 @@ function onDeviceReady() {
         }
     });
 
-    $(document).on("pagebeforeshow", "#PageEmergency", function () {
+    $(document).on("pagebeforeshow", "#PageLoggedInHome", function () {
         //Get user's location
         navigator.geolocation.getCurrentPosition(locwhereamiSuccess, locwhereamiError);
     });

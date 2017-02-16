@@ -442,6 +442,9 @@ function checkPreAuth() {
         $("#submitButton").removeAttr("disabled");
 
         form.css('display', 'block');
+
+        //Go to login page
+        $.mobile.changePage("#PageLogin");
     }
     $.mobile.loading('hide');
 }

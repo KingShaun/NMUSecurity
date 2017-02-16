@@ -48,6 +48,10 @@ function onDeviceReady() {
     //NMMU LOGIC: Run the checkPreAuth function to determine whether the user is logged in and that the details are still correct. If so, auto login.
     checkPreAuth();
 
+    $(".LogoutButton").on("click", function () {
+        localStorage.clear("username");
+        localStorage.clear("password");
+        localStorage.clear("isStudent");
 
     //Show signed in or signe out sections
     //Signed in

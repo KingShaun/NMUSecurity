@@ -46,7 +46,19 @@ function onDeviceReady() {
     $.mobile.loading('show');
 
     //NMMU LOGIC: Run the checkPreAuth function to determine whether the user is logged in and that the details are still correct. If so, auto login.
-        checkPreAuth();
+    checkPreAuth();
+
+
+    //Show signed in or signe out sections
+    //Signed in
+    if (window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
+        $("#ListviewSignedOut").css('display', 'none');
+        $("#ListviewSignedIn").css('display', 'block');
+    }
+    else {
+        $("#ListviewSignedOut").css('display', 'block');
+        $("#ListviewSignedIn").css('display', 'none');
+    }
 
     //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
     //$("#loginForm").on("submit", handleLogin);
@@ -74,17 +86,17 @@ function onDeviceReady() {
     });
 
     // Determine whether to show staff or student menu
-     $(document).on('pagebeforeshow', '#PageHome', function () {
-        //Show student list items
-        if (window.localStorage["username"] != '') {
-            $("#ListviewSignedOut").css('display', 'none');
-            $("#ListviewSignedIn").css('display', 'block');
-        }
-        else {
-            $("#ListviewSignedOut").css('display', 'block');
-            $("#ListviewSignedIn").css('display', 'none');
-        }
-    });
+    // $(document).on('pagebeforeshow', '#PageHome', function () {
+    //    //Show student list items
+    //     if (window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
+    //        $("#ListviewSignedOut").css('display', 'none');
+    //        $("#ListviewSignedIn").css('display', 'block');
+    //    }
+    //    else {
+    //        $("#ListviewSignedOut").css('display', 'block');
+    //        $("#ListviewSignedIn").css('display', 'none');
+    //    }
+    //});
     // ########################## End Login ############################ 
 
 
@@ -444,7 +456,7 @@ function checkPreAuth() {
         form.css('display', 'block');
 
         //Go to login page
-        $.mobile.changePage("#PageLogin");
+        //$.mobile.changePage("#PageLogin");
     }
     $.mobile.loading('hide');
 }

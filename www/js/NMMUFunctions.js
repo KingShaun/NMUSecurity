@@ -39,6 +39,10 @@
 
 function onDeviceReady() {
 
+
+    var currentLatitude= "";
+    var currentLongitude = "";
+
     // ########################## Login ################################ 
 
 
@@ -181,6 +185,9 @@ function onDeviceReady() {
 
     function locwhereamiSuccess(position) {
         codeLatLng(position.coords.latitude, position.coords.longitude);
+
+        currentLatitude = position.coords.latitude;
+        currentLongitude = position.coords.longitude;
     }
 
     // Emergency Page
@@ -231,12 +238,12 @@ function onDeviceReady() {
 
     $(document).on("pagebeforeshow", "#PageLoggedInHome", function () {
         //Get user's location
-        //navigator.geolocation.getCurrentPosition(locwhereamiSuccess, locwhereamiError);
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        navigator.geolocation.getCurrentPosition(locwhereamiSuccess, locwhereamiError);
+        //navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
-        // Throw an error if no update is received every 30 seconds
-        var options = { timeout: 30000 };
-        watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
+        //// Throw an error if no update is received every 30 seconds
+        //var options = { timeout: 30000 };
+        //watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
     });
 
 
@@ -270,6 +277,21 @@ function onDeviceReady() {
         });
 
         GetADDetailsForFeedback(window.localStorage["username"], window.localStorage["password"]);
+    });
+
+    //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
+    $(document).on('pageinit', '#PageEmergencyEmail', function () {
+        $("#FormEmergencyEmail").on("submit", handleEmergencyEmail);
+    });
+
+    $(document).on('pagebeforeshow', '#PageEmergencyEmail', function () {
+
+        //Clear all the inputs.
+        $("#FormEmergencyEmail").each(function () {
+            this.reset();
+        });
+
+        GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
     });
 
     //Email Profile Details form
@@ -454,6 +476,40 @@ function handleFeedback() {
     return false;
 }
 
+function handleEmergencyEmail() {
+    var form = $("#FormEmergencyEmail");
+    //disable the button so we can't resubmit while we wait
+    $("#submitEmergencyEmail", form).attr("disabled", "disabled");
+    var user = $("#NameEmergencyEmail", form).val();
+    var useremail = $("#EmailEmergencyEmail", form).val();
+    var feedback = $("#textareaEmergencyEmail", form).val();
+
+    $.mobile.loading('show');
+    $.ajax({
+        type: "POST",
+        url: "http://webservices.nmmu.ac.za/mobileapp/Feedback.asmx/SendFeedback",
+        contentType: 'application/json',
+        data: '{ yourName: "' + user + '", yourEmail: "' + useremail + '", feedback: "' + feedback + '" }',
+        dataType: "json",
+        success: function (result) {
+            if (result.d == "Success") {
+                //alert("Success");
+                $("#submitEmergencyEmail").removeAttr("disabled");
+                $.mobile.loading('hide');
+                $.mobile.changePage("#FeedbackPostSuccess", {
+                    role: "dialog"
+                });
+            }
+            else {
+                //alert("Error");
+                $.mobile.changePage("#PageError", { role: "dialog" });
+            }
+        }
+
+    });
+    return false;
+}
+
 function handleSendProfileDetails(username) {
     var form = $("#FormEmailProfile");
     //disable the button so we can't resubmit while we wait
@@ -526,6 +582,28 @@ function GetADDetailsForFeedback(username, password) {
     }).done(function (msg) {
         $("#NameFeedback", formFeedback).val(msg.d.FullName);
         $("#EmailFeedback", formFeedback).val(msg.d.Email);
+
+    }).fail(function (msg) {
+        navigator.notification.alert("An error has occurred.", function () { });
+        //alert("fail:" + msg);
+    }).always(function () {
+
+    });
+}
+
+function GetADDetailsForEmergencyEmail(username, password) {
+    var formEmergencyEmail = $("#FormEmergencyEmail");
+    $.ajax({
+        type: "POST",
+        url: "https://webservices.nmmu.ac.za/mobileapp/adauthentication.asmx/IsAuthenticated",
+        contentType: 'application/json',
+        data: '{ username: "' + username + '", password: "' + password + '" }',
+        dataType: "json"
+    }).done(function (msg) {
+        $("#NameEmergencyEmail", formEmergencyEmail).val(msg.d.FullName);
+        $("#EmailEmergencyEmail", formEmergencyEmail).val(msg.d.Email);
+        $("#textareaEmergencyEmail", formEmergencyEmail).val("https://maps.google.com/?ll=" + currentLatitude + "," + currentLongitude);
+        $('#FormEmergencyEmail').submit();
 
     }).fail(function (msg) {
         navigator.notification.alert("An error has occurred.", function () { });

@@ -67,7 +67,7 @@
         </div>
         <div style="text-align: center;">
             <!--<a href="#" class="ui-btn ui-btn-inline ui-icon-alert ui-btn-icon-left ui-shadow">HELP ME!</a>-->
-            <a href="#" data-role="button" data-icon="alert" data-inline="true" style="background: #B33A3A; color: white;">HELP ME!</a>
+            <a href="#PageEmergencyEmail" data-role="button" data-icon="alert" data-inline="true" style="background: #B33A3A; color: white;">HELP ME!</a>
         </div>
         <div data-role="content" style="padding-bottom:50px">
             <ul data-role="listview" data-divider-theme="a" data-inset="true">
@@ -155,6 +155,31 @@
         </div>
     </div>
     <!-- End all fields required -->
+
+    <!-- Feedback -->
+    <div data-role="page" id="PageEmergencyEmail">
+
+        <div data-role="content">
+            <form id="FormEmergencyEmail" class="ui-body ui-body-d ui-corner-all">
+                <div data-role="fieldcontain">
+                    <label for="YourName">Name:</label>
+                    <input type="text" value="" name="YourName" id="NameEmergencyEmail" maxlength="250" required disabled="disabled" />
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="YourEmail">Email:</label>
+                    <input type="email" value="" name="YourEmail" id="EmailEmergencyEmail" maxlength="150" required disabled="disabled" />
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="textareaDescription">Location link*</label>
+                    <textarea name="textareaFeedback" id="textareaEmergencyEmail" placeholder="Details" maxlength="1000" required></textarea>
+                </div>
+                <input type="submit" name="submitEmergencyEmail" id="submitEmergencyEmail" value="Submit">
+            </form>
+        </div>
+
+    </div>
+    <!-- End Feedback -->
+
 
 
     <script type="text/javascript" src="cordova.js"></script>

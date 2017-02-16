@@ -215,8 +215,8 @@ function onDeviceReady() {
 
     // onSuccessWatch Geolocation
     //
-    function onSuccess(position) {
-        var element = document.getElementById('geolocation');
+    function onSuccessWatch(position) {
+        var element = document.getElementById('LiWhereAmINow');
         element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
                             'Longitude: ' + position.coords.longitude + '<br />' +
                             '<hr />' + element.innerHTML;
@@ -224,7 +224,7 @@ function onDeviceReady() {
 
     // onErrorWatch Callback receives a PositionError object
     //
-    function onError(error) {
+    function onErrorWatch(error) {
         alert('code: ' + error.code + '\n' +
               'message: ' + error.message + '\n');
     }

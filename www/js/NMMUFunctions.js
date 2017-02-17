@@ -146,19 +146,19 @@ function onDeviceReady() {
         var lat = parseFloat(latlngStr[0]);
         var lng = parseFloat(latlngStr[1]);
         var latlng = new google.maps.LatLng(lat, lng);
-        var element = document.getElementById('textareaEmergencyEmail');
+        var message = document.getElementById('textareaEmergencyEmail');
 
         geocoder.geocode({ 'latLng': latlng }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[0]) {
                     //$('#DivEmergency').html(results[1].formatted_address);
                     $('#LiWhereAmI').html(results[0].formatted_address);
-                    element.innerHTML = 'Testing<br /><br />http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
+                    message.innerHTML = results[0].formatted_address + '<br /><br />http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
                 } else {
-                    element.innerHTML = 'No results found';
+                    message.innerHTML = 'No results found';
                 }
             } else {
-                element.innerHTML = 'Geocoder failed due to: ' + status;
+                message.innerHTML = 'Geocoder failed due to: ' + status;
             }
         });
 

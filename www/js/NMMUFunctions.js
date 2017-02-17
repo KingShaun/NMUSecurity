@@ -39,10 +39,6 @@
 
 function onDeviceReady() {
 
-
-    var currentLatitude= "";
-    var currentLongitude = "";
-
     // ########################## Login ################################ 
 
 
@@ -186,8 +182,8 @@ function onDeviceReady() {
     function locwhereamiSuccess(position) {
         codeLatLng(position.coords.latitude, position.coords.longitude);
 
-        currentLatitude = position.coords.latitude;
-        currentLongitude = position.coords.longitude;
+        var element = document.getElementById('textareaEmergencyEmail');
+        element.innerHTML = 'https://maps.google.com/?ll=' + position.coords.latitude +  ',' + position.coords.longitude
     }
 
     // Emergency Page
@@ -604,9 +600,9 @@ function GetADDetailsForEmergencyEmail(username, password) {
     }).done(function (msg) {
         $("#NameEmergencyEmail", formEmergencyEmail).val(msg.d.FullName);
         $("#EmailEmergencyEmail", formEmergencyEmail).val(msg.d.Email);
-        $("#textareaEmergencyEmail", formEmergencyEmail).val(currentLatitude);
+        //$("#textareaEmergencyEmail", formEmergencyEmail).val(currentLatitude);
         //$("#textareaEmergencyEmail", formEmergencyEmail).val("https://maps.google.com/?ll=" + currentLatitude + "," + currentLongitude);
-        $('#FormEmergencyEmail').submit();
+        //$('#FormEmergencyEmail').submit();
 
     }).fail(function (msg) {
         navigator.notification.alert("An error has occurred.", function () { });

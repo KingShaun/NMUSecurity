@@ -183,7 +183,7 @@ function onDeviceReady() {
         codeLatLng(position.coords.latitude, position.coords.longitude);
 
         var element = document.getElementById('textareaEmergencyEmail');
-        element.innerHTML = 'https://maps.google.com/?ll=' + position.coords.latitude +  ',' + position.coords.longitude
+        element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
     }
 
     // Emergency Page
@@ -277,7 +277,7 @@ function onDeviceReady() {
         GetADDetailsForFeedback(window.localStorage["username"], window.localStorage["password"]);
     });
 
-    //NMMU LOGIC: Set the login form's submit to fire the handleLogin function. 
+    //NMMU LOGIC: Set the login form's submit to fire the handleEmergencyEmail function. 
     $(document).on('pageinit', '#PageEmergencyEmail', function () {
         $("#FormEmergencyEmail").on("submit", handleEmergencyEmail);
     });
@@ -600,9 +600,7 @@ function GetADDetailsForEmergencyEmail(username, password) {
     }).done(function (msg) {
         $("#NameEmergencyEmail", formEmergencyEmail).val(msg.d.FullName);
         $("#EmailEmergencyEmail", formEmergencyEmail).val(msg.d.Email);
-        //$("#textareaEmergencyEmail", formEmergencyEmail).val(currentLatitude);
-        //$("#textareaEmergencyEmail", formEmergencyEmail).val("https://maps.google.com/?ll=" + currentLatitude + "," + currentLongitude);
-        //$('#FormEmergencyEmail').submit();
+        $('#FormEmergencyEmail').submit();
 
     }).fail(function (msg) {
         navigator.notification.alert("An error has occurred.", function () { });

@@ -200,7 +200,9 @@ function onDeviceReady() {
         geocoder.geocode({ 'latLng': latlng }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[0]) {
-                    $('#textareaEmergencyEmail').html(results[0].formatted_address);
+                    //$('#textareaEmergencyEmail').html(results[0].formatted_address);
+                    var element = document.getElementById('textareaEmergencyEmail');
+                    element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + lat + '+' + lon;
                 } else {
                     alert('No results found');
                 }

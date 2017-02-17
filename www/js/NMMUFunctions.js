@@ -238,7 +238,9 @@ function onDeviceReady() {
 
     $(document).on("pagebeforeshow", "#PageLoggedInHome", function () {
         //Get user's location
+        $.mobile.loading('show');
         navigator.geolocation.getCurrentPosition(locwhereamiSuccess, locwhereamiError);
+        $.mobile.loading('hide');
         //navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
         //// Throw an error if no update is received every 30 seconds
@@ -602,7 +604,8 @@ function GetADDetailsForEmergencyEmail(username, password) {
     }).done(function (msg) {
         $("#NameEmergencyEmail", formEmergencyEmail).val(msg.d.FullName);
         $("#EmailEmergencyEmail", formEmergencyEmail).val(msg.d.Email);
-        $("#textareaEmergencyEmail", formEmergencyEmail).val("https://maps.google.com/?ll=" + currentLatitude + "," + currentLongitude);
+        $("#textareaEmergencyEmail", formEmergencyEmail).val(currentLatitude);
+        //$("#textareaEmergencyEmail", formEmergencyEmail).val("https://maps.google.com/?ll=" + currentLatitude + "," + currentLongitude);
         $('#FormEmergencyEmail').submit();
 
     }).fail(function (msg) {

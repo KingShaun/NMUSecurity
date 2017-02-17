@@ -284,12 +284,19 @@ function onDeviceReady() {
 
     $(document).on('pagebeforeshow', '#PageEmergencyEmail', function () {
 
+        $.mobile.loading('show');
+
         //Clear all the inputs.
         $("#FormEmergencyEmail").each(function () {
             this.reset();
         });
 
+        //Get user's location        
+        navigator.geolocation.getCurrentPosition(locwhereamiSuccess, locwhereamiError);        
+
         GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
+
+        $.mobile.loading('hide');
     });
 
     //Email Profile Details form
@@ -601,7 +608,7 @@ function GetADDetailsForEmergencyEmail(username, password) {
     }).done(function (msg) {
         $("#NameEmergencyEmail", formEmergencyEmail).val(msg.d.FullName);
         $("#EmailEmergencyEmail", formEmergencyEmail).val(msg.d.Email);
-        $('#FormEmergencyEmail').submit();
+        //$('#FormEmergencyEmail').submit();
 
     }).fail(function (msg) {
         navigator.notification.alert("An error has occurred.", function () { });

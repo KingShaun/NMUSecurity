@@ -146,19 +146,16 @@ function onDeviceReady() {
         var lat = parseFloat(latlngStr[0]);
         var lng = parseFloat(latlngStr[1]);
         var latlng = new google.maps.LatLng(lat, lng);
-        var message = document.getElementById('textareaEmergencyEmail');
-
         geocoder.geocode({ 'latLng': latlng }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[0]) {
                     //$('#DivEmergency').html(results[1].formatted_address);
                     $('#LiWhereAmI').html(results[0].formatted_address);
-                    message.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
                 } else {
-                    message.innerHTML = 'No results found';
+                    alert('No results found');
                 }
             } else {
-                message.innerHTML = 'Geocoder failed due to: ' + status;
+                alert('Geocoder failed due to: ' + status);
             }
         });
 
@@ -184,6 +181,56 @@ function onDeviceReady() {
 
     function locwhereamiSuccess(position) {
         codeLatLng(position.coords.latitude, position.coords.longitude);
+    }
+
+
+
+    //Reverse Geolocate
+    function emergencyLatLng(lat, lon) {
+
+        $.mobile.loading('show');
+
+        var geocoder = new google.maps.Geocoder();
+
+        var input = lat + "," + lon;
+        var latlngStr = input.split(',', 2);
+        var lat = parseFloat(latlngStr[0]);
+        var lng = parseFloat(latlngStr[1]);
+        var latlng = new google.maps.LatLng(lat, lng);
+        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    $('#textareaEmergencyEmail').html(results[0].formatted_address);
+                } else {
+                    alert('No results found');
+                }
+            } else {
+                alert('Geocoder failed due to: ' + status);
+            }
+        });
+
+        $.mobile.loading('hide');
+    }
+
+    function emergencywhereamiError(error) {
+        // initialize map with a static predefined latitude, longitude
+        //alert('code: ' + error.code + '\n' +
+        //              'message: ' + error.message + '\n');
+        //initialize('', '');
+        switch (error.code) {
+            case error.PERMISSION_DENIED: alert("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE: alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT: alert("The request to get user location timed out.");
+                break;
+            default: alert("An unknown error occurred.");
+                break;
+        }
+    }
+
+    function emergencywhereamiSuccess(position) {
+        emergencyLatLng(position.coords.latitude, position.coords.longitude);
     }
 
     // Emergency Page
@@ -292,7 +339,10 @@ function onDeviceReady() {
         });
 
         //Get user's location        
-        navigator.geolocation.getCurrentPosition(locwhereamiSuccess, locwhereamiError);        
+        navigator.geolocation.getCurrentPosition(emergencywhereamiSuccess, emergencywhereamiError);
+
+        //var element = document.getElementById('textareaEmergencyEmail');
+        //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
 
         GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
 

@@ -153,7 +153,7 @@ function onDeviceReady() {
                 if (results[0]) {
                     //$('#DivEmergency').html(results[1].formatted_address);
                     $('#LiWhereAmI').html(results[0].formatted_address);
-                    message.innerHTML = results[0].formatted_address + '<br /><br />http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
+                    message.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
                 } else {
                     message.innerHTML = 'No results found';
                 }

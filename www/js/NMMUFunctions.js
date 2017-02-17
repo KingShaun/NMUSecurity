@@ -146,16 +146,19 @@ function onDeviceReady() {
         var lat = parseFloat(latlngStr[0]);
         var lng = parseFloat(latlngStr[1]);
         var latlng = new google.maps.LatLng(lat, lng);
+        var element = document.getElementById('textareaEmergencyEmail');
+
         geocoder.geocode({ 'latLng': latlng }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[0]) {
                     //$('#DivEmergency').html(results[1].formatted_address);
                     $('#LiWhereAmI').html(results[0].formatted_address);
+                    element.innerHTML = results[0].formatted_address + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
                 } else {
-                    alert('No results found');
+                    element.innerHTML = 'No results found';
                 }
             } else {
-                alert('Geocoder failed due to: ' + status);
+                element.innerHTML = 'Geocoder failed due to: ' + status;
             }
         });
 
@@ -181,9 +184,6 @@ function onDeviceReady() {
 
     function locwhereamiSuccess(position) {
         codeLatLng(position.coords.latitude, position.coords.longitude);
-
-        var element = document.getElementById('textareaEmergencyEmail');
-        element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
     }
 
     // Emergency Page
@@ -408,6 +408,7 @@ function handleLogin() {
                 window.localStorage["password"] = p;
                 window.localStorage["isStudent"] = msg.d.IsStudent;
 
+                $("#submitButton").removeAttr("disabled");
                 //Go to My NMMU menu page
                 $.mobile.changePage("#PageLoggedInHome");
             }

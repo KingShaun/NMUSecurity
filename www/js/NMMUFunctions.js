@@ -460,9 +460,7 @@ function handleFeedback() {
             //alert("Success");
             $("#submitFeedback").removeAttr("disabled");
             $.mobile.loading('hide');
-            $.mobile.changePage("#FeedbackPostSuccess", {
-                role: "dialog"
-            });
+            $.mobile.changePage("#FeedbackPostSuccess", { role: "dialog" });
         }
         else {
             //alert("Error");
@@ -481,6 +479,7 @@ function handleEmergencyEmail() {
     var user = $("#NameEmergencyEmail", form).val();
     var useremail = $("#EmailEmergencyEmail", form).val();
     var feedback = $("#textareaEmergencyEmail", form).val();
+    var element = document.getElementById('LiEmergencyEmail');
 
     $.mobile.loading('show');
     $.ajax({
@@ -494,13 +493,14 @@ function handleEmergencyEmail() {
                 //alert("Success");
                 $("#submitEmergencyEmail").removeAttr("disabled");
                 $.mobile.loading('hide');
-                $.mobile.changePage("#FeedbackPostSuccess", {
-                    role: "dialog"
-                });
+                //$.mobile.changePage("#FeedbackPostSuccess", { role: "dialog" });
+
+                element.innerHTML = 'The message was sent successfully.'
             }
             else {
                 //alert("Error");
-                $.mobile.changePage("#PageError", { role: "dialog" });
+                //$.mobile.changePage("#PageError", { role: "dialog" });
+                element.innerHTML = 'An error has occured. Please try again.'
             }
         }
 

@@ -243,8 +243,6 @@ function onDeviceReady() {
 
     var success = function (position) {
 
-        emergencyLatLng(position.coords.latitude, position.coords.longitude)
-
         // resolve the deferred with your object as the data
         deferred.resolve({
             longitude: position.coords.longitude,
@@ -269,6 +267,8 @@ function onDeviceReady() {
 
     var getLocation = function () {
         navigator.geolocation.getCurrentPosition(success, fail, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
+        
+        emergencyLatLng(position.coords.latitude, position.coords.longitude)
 
         return deferred.promise(); // return a promise
     };

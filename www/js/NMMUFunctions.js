@@ -251,18 +251,20 @@ function onDeviceReady() {
         });
     };
 
-    var fail = function (error) {
+    var fail = function () {
         // reject the deferred with an error message
 
-        switch (error.code) {
-            case error.PERMISSION_DENIED: deferred.reject("User denied the request for Geolocation.");
-                break;
-            case error.POSITION_UNAVAILABLE: deferred.reject("Location information is unavailable.");
-                break;
-            case error.TIMEOUT: deferred.reject("The request to get user location timed out.");
-                break;
-            default: deferred.reject("An unknown error occurred.");
-                break;
+        deferred.reject("An unknown error occurred.");
+
+        //switch (error.code) {
+        //    case error.PERMISSION_DENIED: deferred.reject("User denied the request for Geolocation.");
+        //        break;
+        //    case error.POSITION_UNAVAILABLE: deferred.reject("Location information is unavailable.");
+        //        break;
+        //    case error.TIMEOUT: deferred.reject("The request to get user location timed out.");
+        //        break;
+        //    default: deferred.reject("An unknown error occurred.");
+        //        break;
     };
 
     var getLocation = function () {

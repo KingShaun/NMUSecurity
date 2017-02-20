@@ -341,7 +341,7 @@ function onDeviceReady() {
         });
 
         //Get user's location        
-        navigator.geolocation.getCurrentPosition(emergencywhereamiSuccess, emergencywhereamiError);
+        navigator.geolocation.getCurrentPosition(emergencywhereamiSuccess, emergencywhereamiError, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
 
         //var element = document.getElementById('textareaEmergencyEmail');
         //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude

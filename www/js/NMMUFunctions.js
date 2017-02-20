@@ -183,7 +183,7 @@ function onDeviceReady() {
         codeLatLng(position.coords.latitude, position.coords.longitude);
     }
 
-
+    var formattedAddress;
 
     //Reverse Geolocate
     function emergencyLatLng(lat, lon) {
@@ -201,13 +201,16 @@ function onDeviceReady() {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[0]) {
                     //$('#textareaEmergencyEmail').html(results[0].formatted_address);
-                    var element = document.getElementById('textareaEmergencyEmail');
-                    element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + lat + '+' + lon;
+                    //var element = document.getElementById('textareaEmergencyEmail');
+                    //element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + lat + '+' + lon;
+                    formattedAddress = results[0].formatted_address;
                 } else {
-                    alert('No results found');
+                    //alert('No results found');
+                    formattedAddress = 'No results found';
                 }
             } else {
-                alert('Geocoder failed due to: ' + status);
+                //alert('Geocoder failed due to: ' + status);
+                formattedAddress = 'Geocoder failed due to: ' + status;
             }
         });
 
@@ -239,20 +242,33 @@ function onDeviceReady() {
     var deferred = $.Deferred();
 
     var success = function (position) {
+
+        emergencyLatLng(position.coords.latitude, position.coords.longitude)
+
         // resolve the deferred with your object as the data
         deferred.resolve({
             longitude: position.coords.longitude,
-            latitude: position.coords.latitude
+            latitude: position.coords.latitude,
+            message: formattedAddress
         });
     };
 
-    var fail = function () {
+    var fail = function (error) {
         // reject the deferred with an error message
-        deferred.reject('failed!');
+
+        switch (error.code) {
+            case error.PERMISSION_DENIED: deferred.reject("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE: deferred.reject("Location information is unavailable.");
+                break;
+            case error.TIMEOUT: deferred.reject("The request to get user location timed out.");
+                break;
+            default: deferred.reject("An unknown error occurred.");
+                break;
     };
 
     var getLocation = function () {
-        navigator.geolocation.getCurrentPosition(success, fail);
+        navigator.geolocation.getCurrentPosition(success, fail, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
 
         return deferred.promise(); // return a promise
     };
@@ -373,7 +389,7 @@ function onDeviceReady() {
                 // success, location is the object you passed to resolve
                 var element = document.getElementById('textareaEmergencyEmail');
                 //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latitude + '+' + longitude;
-                element.innerHTML = location.longitude + ", " + location.latitude;
+                element.innerHTML = formattedAddress + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + location.longitude + ", " + location.latitude;
             },
             function (errorMessage) {
                 // fail, errorMessage is the string you passed to reject

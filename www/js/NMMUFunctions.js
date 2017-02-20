@@ -235,6 +235,30 @@ function onDeviceReady() {
         emergencyLatLng(position.coords.latitude, position.coords.longitude);
     }
 
+    // create a new deferred object
+    var deferred = $.Deferred();
+
+    var success = function (position) {
+        // resolve the deferred with your object as the data
+        deferred.resolve({
+            longitude: position.coords.longitude,
+            latitude: position.coords.latitude
+        });
+    };
+
+    var fail = function () {
+        // reject the deferred with an error message
+        deferred.reject('failed!');
+    };
+
+    var getLocation = function () {
+        navigator.geolocation.getCurrentPosition(success, fail);
+
+        return deferred.promise(); // return a promise
+    };
+
+
+
     // Emergency Page
     $(document).on('pageinit', '#PageEmergency', function () {
         var IsPhone = $.mobile.media("screen and (min-width: 320px) and (max-device-width : 480px)");
@@ -341,7 +365,19 @@ function onDeviceReady() {
         });
 
         //Get user's location        
-        navigator.geolocation.getCurrentPosition(emergencywhereamiSuccess, emergencywhereamiError, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
+        //navigator.geolocation.getCurrentPosition(emergencywhereamiSuccess, emergencywhereamiError, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
+
+        // then you would use it like this:
+        getLocation().then(
+            function (location) {
+                // success, location is the object you passed to resolve
+                var element = document.getElementById('textareaEmergencyEmail');
+                element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latitude + '+' + longitude;
+            },
+            function (errorMessage) {
+                // fail, errorMessage is the string you passed to reject
+                alert(errorMessage);
+            });
 
         //var element = document.getElementById('textareaEmergencyEmail');
         //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude

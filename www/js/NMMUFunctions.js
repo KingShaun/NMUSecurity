@@ -249,6 +249,8 @@ function onDeviceReady() {
             latitude: position.coords.latitude
             //message: formattedAddress
         });
+
+        emergencyLatLng(position.coords.latitude, position.coords.longitude);
     };
 
     var fail = function () {
@@ -269,8 +271,6 @@ function onDeviceReady() {
 
     var getLocation = function () {
         navigator.geolocation.getCurrentPosition(success, fail, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
-        
-        //emergencyLatLng(position.coords.latitude, position.coords.longitude)
 
         return deferred.promise(); // return a promise
     };
@@ -391,7 +391,7 @@ function onDeviceReady() {
                 // success, location is the object you passed to resolve
                 var element = document.getElementById('textareaEmergencyEmail');
                 //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latitude + '+' + longitude;
-                element.innerHTML = formattedAddress + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + location.longitude + ", " + location.latitude;
+                element.innerHTML = formattedAddress + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + location.longitude + ", " + location.latitude;
             },
             function (errorMessage) {
                 // fail, errorMessage is the string you passed to reject

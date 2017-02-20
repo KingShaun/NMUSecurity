@@ -372,7 +372,8 @@ function onDeviceReady() {
             function (location) {
                 // success, location is the object you passed to resolve
                 var element = document.getElementById('textareaEmergencyEmail');
-                element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latitude + '+' + longitude;
+                //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latitude + '+' + longitude;
+                element.innerHTML = location.longitude + ", " + location.latitude;
             },
             function (errorMessage) {
                 // fail, errorMessage is the string you passed to reject

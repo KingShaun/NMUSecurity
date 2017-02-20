@@ -243,14 +243,14 @@ function onDeviceReady() {
 
     var success = function (position) {
 
+        emergencyLatLng(position.coords.latitude, position.coords.longitude);
+
         // resolve the deferred with your object as the data
         deferred.resolve({
             longitude: position.coords.longitude,
-            latitude: position.coords.latitude
-            //message: formattedAddress
+            latitude: position.coords.latitude,
+            message: formattedAddress
         });
-
-        emergencyLatLng(position.coords.latitude, position.coords.longitude);
     };
 
     var fail = function () {

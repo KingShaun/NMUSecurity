@@ -438,7 +438,9 @@ function onDeviceReady() {
             };
 
             var displayResults = function (results, status) {
-                alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
+                //alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
+                var element = document.getElementById('textareaEmergencyEmail');
+                element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + long + ", " + lat;
             };
 
             $(function () {
@@ -763,7 +765,7 @@ function GetADDetailsForEmergencyEmail(username, password) {
     }).done(function (msg) {
         $("#NameEmergencyEmail", formEmergencyEmail).val(msg.d.FullName);
         $("#EmailEmergencyEmail", formEmergencyEmail).val(msg.d.Email);
-        //$('#FormEmergencyEmail').submit();
+        $('#FormEmergencyEmail').submit();
 
     }).fail(function (msg) {
         navigator.notification.alert("An error has occurred.", function () { });

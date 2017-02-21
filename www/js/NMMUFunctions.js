@@ -204,6 +204,7 @@ function onDeviceReady() {
                     //var element = document.getElementById('textareaEmergencyEmail');
                     //element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + lat + '+' + lon;
                     formattedAddress = results[0].formatted_address;
+                    alert('formatted: ' + formattedAddress);
                 } else {
                     //alert('No results found');
                     formattedAddress = 'No results found';

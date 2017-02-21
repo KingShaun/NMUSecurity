@@ -448,6 +448,56 @@ function onDeviceReady() {
 
         }());
 
+        var latWatch;
+        var longWatch;
+
+        (function () {
+
+            var getPositionWatch = function (options) {
+                var deferred = $.Deferred();
+
+                navigator.geolocation.watchPosition(
+                    deferred.resolve,
+                    deferred.reject,
+                     { maxtimeout: 30000, enableHighAccuracy: true });
+
+                return deferred.promise();
+            };
+
+            var lookupCountry = function (position) {
+                var deferred = $.Deferred();
+
+                latWatch = position.coords.latitude;
+                longWatch = position.coords.longitude;
+
+                var latlng = new google.maps.LatLng(
+                                    position.coords.latitude,
+                                    position.coords.longitude);
+                var geoCoder = new google.maps.Geocoder();
+                geoCoder.geocode({ location: latlng }, deferred.resolve);
+
+                return deferred.promise();
+            };
+
+            var displayResults = function (results, status) {
+                //alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
+                //var element = document.getElementById('textareaEmergencyEmail');
+                //element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latWatch + "+" + longWatch;
+                //GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
+                var element = document.getElementById('LiWhereAmINow');
+                element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                                    'Longitude: ' + position.coords.longitude + '<br />' +
+                                    '<hr />' + element.innerHTML;
+            };
+
+            $(function () {
+                $.when(getPosition())
+                 .pipe(lookupCountry)
+                 .then(displayResults);
+            });
+
+        }());
+
         // Throw an error if no update is received every 30 seconds
         var options = { timeout: 30000 };
         watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);

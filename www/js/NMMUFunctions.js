@@ -440,7 +440,7 @@ function onDeviceReady() {
             var displayResults = function (results, status) {
                 //alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
                 var element = document.getElementById('textareaEmergencyEmail');
-                element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + long + "+" + lat;
+                element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + lat + "+" + long;
                 GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
             };
 

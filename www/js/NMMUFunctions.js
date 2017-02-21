@@ -239,42 +239,42 @@ function onDeviceReady() {
         emergencyLatLng(position.coords.latitude, position.coords.longitude);
     }
 
-    // create a new deferred object
-    var deferred = $.Deferred();
+    //////// create a new deferred object
+    //////var deferred = $.Deferred();
 
-    var success = function (position) {
+    //////var success = function (position) {
 
-        emergencyLatLng(position.coords.latitude, position.coords.longitude);
+    //////    emergencyLatLng(position.coords.latitude, position.coords.longitude);
 
-        // resolve the deferred with your object as the data
-        deferred.resolve({
-            longitude: position.coords.longitude,
-            latitude: position.coords.latitude,
-            message: formattedAddress
-        });
-    };
+    //////    // resolve the deferred with your object as the data
+    //////    deferred.resolve({
+    //////        longitude: position.coords.longitude,
+    //////        latitude: position.coords.latitude,
+    //////        message: formattedAddress
+    //////    });
+    //////};
 
-    var fail = function () {
-        // reject the deferred with an error message
+    //////var fail = function () {
+    //////    // reject the deferred with an error message
 
-        deferred.reject("An unknown error occurred.");
+    //////    deferred.reject("An unknown error occurred.");
 
-        //switch (error.code) {
-        //    case error.PERMISSION_DENIED: deferred.reject("User denied the request for Geolocation.");
-        //        break;
-        //    case error.POSITION_UNAVAILABLE: deferred.reject("Location information is unavailable.");
-        //        break;
-        //    case error.TIMEOUT: deferred.reject("The request to get user location timed out.");
-        //        break;
-        //    default: deferred.reject("An unknown error occurred.");
-        //        break;
-    };
+    //////    //switch (error.code) {
+    //////    //    case error.PERMISSION_DENIED: deferred.reject("User denied the request for Geolocation.");
+    //////    //        break;
+    //////    //    case error.POSITION_UNAVAILABLE: deferred.reject("Location information is unavailable.");
+    //////    //        break;
+    //////    //    case error.TIMEOUT: deferred.reject("The request to get user location timed out.");
+    //////    //        break;
+    //////    //    default: deferred.reject("An unknown error occurred.");
+    //////    //        break;
+    //////};
 
-    var getLocation = function () {
-        navigator.geolocation.getCurrentPosition(success, fail, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
+    //////var getLocation = function () {
+    //////    navigator.geolocation.getCurrentPosition(success, fail, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
 
-        return deferred.promise(); // return a promise
-    };
+    //////    return deferred.promise(); // return a promise
+    //////};
 
 
 
@@ -369,6 +369,10 @@ function onDeviceReady() {
         GetADDetailsForFeedback(window.localStorage["username"], window.localStorage["password"]);
     });
 
+
+
+
+
     //NMMU LOGIC: Set the login form's submit to fire the handleEmergencyEmail function. 
     $(document).on('pageinit', '#PageEmergencyEmail', function () {
         $("#FormEmergencyEmail").on("submit", handleEmergencyEmail);
@@ -386,23 +390,62 @@ function onDeviceReady() {
         //Get user's location        
         //navigator.geolocation.getCurrentPosition(emergencywhereamiSuccess, emergencywhereamiError, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
 
-        // then you would use it like this:
-        getLocation().then(
-            function (location) {
-                // success, location is the object you passed to resolve
-                var element = document.getElementById('textareaEmergencyEmail');
-                //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latitude + '+' + longitude;
-                element.innerHTML = location.message + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + location.longitude + ", " + location.latitude;
-            },
-            function (errorMessage) {
-                // fail, errorMessage is the string you passed to reject
-                alert(errorMessage);
-            });
+        //////// then you would use it like this:
+        //////getLocation().then(
+        //////    function (location) {
+        //////        // success, location is the object you passed to resolve
+        //////        var element = document.getElementById('textareaEmergencyEmail');
+        //////        //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latitude + '+' + longitude;
+        //////        element.innerHTML = location.message + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + location.longitude + ", " + location.latitude;
+        //////    },
+        //////    function (errorMessage) {
+        //////        // fail, errorMessage is the string you passed to reject
+        //////        alert(errorMessage);
+        //////    });
 
         //var element = document.getElementById('textareaEmergencyEmail');
         //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
 
+        (function () {
+
+            var getPosition = function (options) {
+                var deferred = $.Deferred();
+
+                navigator.geolocation.getCurrentPosition(
+                    deferred.resolve,
+                    deferred.reject,
+                    options);
+
+                return deferred.promise();
+            };
+
+            var lookupCountry = function (position) {
+                var deferred = $.Deferred();
+
+                var latlng = new google.maps.LatLng(
+                                    position.coords.latitude,
+                                    position.coords.longitude);
+                var geoCoder = new google.maps.Geocoder();
+                geoCoder.geocode({ location: latlng }, deferred.resolve);
+
+                return deferred.promise();
+            };
+
+            var displayResults = function (results, status) {
+                formattedAddress = results[0].formatted_address;
+            };
+
+            $(function () {
+                $.when(getPosition())
+                 .pipe(lookupCountry)
+                 .then(displayResults);
+            });
+
+        }());
+
         GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
+
+        alert("formatted: " + formattedAddress)
 
         $.mobile.loading('hide');
     });

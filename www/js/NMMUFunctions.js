@@ -432,7 +432,7 @@ function onDeviceReady() {
             };
 
             var displayResults = function (results, status) {
-                formattedAddress = results[0].formatted_address;
+                alert('Results: ' + results[0].formatted_address);
             };
 
             $(function () {
@@ -444,8 +444,6 @@ function onDeviceReady() {
         }());
 
         GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
-
-        alert("formatted: " + formattedAddress)
 
         $.mobile.loading('hide');
     });

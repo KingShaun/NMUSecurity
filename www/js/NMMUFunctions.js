@@ -464,7 +464,7 @@ function onDeviceReady() {
                 return deferred.promise();
             };
 
-            var lookupCountry = function (position) {
+            var lookupCountryWatch = function (position) {
                 var deferred = $.Deferred();
 
                 latWatch = position.coords.latitude;
@@ -479,7 +479,7 @@ function onDeviceReady() {
                 return deferred.promise();
             };
 
-            var displayResults = function (results, status) {
+            var displayResultsWatch = function (results, status) {
                 //alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
                 //var element = document.getElementById('textareaEmergencyEmail');
                 //element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latWatch + "+" + longWatch;
@@ -491,9 +491,9 @@ function onDeviceReady() {
             };
 
             $(function () {
-                $.when(getPosition())
-                 .pipe(lookupCountry)
-                 .then(displayResults);
+                $.when(getPositionWatch())
+                 .pipe(lookupCountryWatch)
+                 .then(displayResultsWatch);
             });
 
         }());

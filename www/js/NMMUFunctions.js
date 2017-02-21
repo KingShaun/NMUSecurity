@@ -459,7 +459,7 @@ function onDeviceReady() {
                 navigator.geolocation.watchPosition(
                     deferred.resolve,
                     deferred.reject,
-                     { maxtimeout: 30000, enableHighAccuracy: true });
+                     { maxtimeout: 200000, enableHighAccuracy: true });
 
                 return deferred.promise();
             };
@@ -481,13 +481,13 @@ function onDeviceReady() {
 
             var displayResultsWatch = function (results, status) {
                 //alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
-                //var element = document.getElementById('textareaEmergencyEmail');
-                //element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latWatch + "+" + longWatch;
-                //GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
-                var element = document.getElementById('LiWhereAmINow');
-                element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
-                                    'Longitude: ' + position.coords.longitude + '<br />' +
-                                    '<hr />' + element.innerHTML;
+                var element = document.getElementById('textareaEmergencyEmail');
+                element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latWatch + "+" + longWatch;
+                GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
+                //var element = document.getElementById('LiWhereAmINow');
+                //element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                //                    'Longitude: ' + position.coords.longitude + '<br />' +
+                //                    '<hr />' + element.innerHTML;
             };
 
             $(function () {

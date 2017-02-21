@@ -204,7 +204,7 @@ function onDeviceReady() {
                     //var element = document.getElementById('textareaEmergencyEmail');
                     //element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + lat + '+' + lon;
                     formattedAddress = results[0].formatted_address;
-                    alert('formatted: ' + formattedAddress);
+                    //alert('formatted: ' + formattedAddress);
                 } else {
                     //alert('No results found');
                     formattedAddress = 'No results found';
@@ -392,7 +392,7 @@ function onDeviceReady() {
                 // success, location is the object you passed to resolve
                 var element = document.getElementById('textareaEmergencyEmail');
                 //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latitude + '+' + longitude;
-                element.innerHTML = formattedAddress + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + location.longitude + ", " + location.latitude;
+                element.innerHTML = location.message + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + location.longitude + ", " + location.latitude;
             },
             function (errorMessage) {
                 // fail, errorMessage is the string you passed to reject

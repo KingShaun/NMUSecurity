@@ -406,6 +406,9 @@ function onDeviceReady() {
         //var element = document.getElementById('textareaEmergencyEmail');
         //element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + '+' + position.coords.longitude
 
+        var lat;
+        var long;
+
         (function () {
 
             var getPosition = function (options) {
@@ -422,6 +425,9 @@ function onDeviceReady() {
             var lookupCountry = function (position) {
                 var deferred = $.Deferred();
 
+                lat = position.coords.latitude;
+                long = position.coords.longitude;
+
                 var latlng = new google.maps.LatLng(
                                     position.coords.latitude,
                                     position.coords.longitude);
@@ -432,7 +438,7 @@ function onDeviceReady() {
             };
 
             var displayResults = function (results, status) {
-                alert('Results: ' + results[0].formatted_address);
+                alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
             };
 
             $(function () {

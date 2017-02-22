@@ -311,10 +311,15 @@ function onDeviceReady() {
     // onSuccessWatch Geolocation
     //
     function onSuccessWatch(position) {
-        var element = document.getElementById('LiWhereAmINow');
-        element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
-                            'Longitude: ' + position.coords.longitude + '<br />' +
-                            '<hr />' + element.innerHTML;
+        //var element = document.getElementById('LiWhereAmINow');
+        //element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+        //                    'Longitude: ' + position.coords.longitude + '<br />' +
+        //                    '<hr />' + element.innerHTML;
+                var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
+                elementEmailTypOf.innerHTML = 'Update';
+                var element = document.getElementById('textareaEmergencyEmail');
+                element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latWatch + "+" + longWatch;
+                GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
     }
 
     // onErrorWatch Callback receives a PositionError object
@@ -453,60 +458,61 @@ function onDeviceReady() {
         var latWatch;
         var longWatch;
 
-        (function () {
+        //(function () {
 
-            var getPositionWatch = function (options) {
-                var deferred = $.Deferred();
+        //    var getPositionWatch = function (options) {
+        //        var deferred = $.Deferred();
 
-                navigator.geolocation.watchPosition(
-                    deferred.resolve,
-                    deferred.reject,
-                     { maxtimeout: 10000, enableHighAccuracy: true });
+        //        navigator.geolocation.watchPosition(
+        //            deferred.resolve,
+        //            deferred.reject,
+        //             { maxtimeout: 10000, enableHighAccuracy: true });
 
-                return deferred.promise();
-            };
+        //        return deferred.promise();
+        //    };
 
-            var lookupCountryWatch = function (position) {
-                var deferred = $.Deferred();
+        //    var lookupCountryWatch = function (position) {
+        //        var deferred = $.Deferred();
 
-                latWatch = position.coords.latitude;
-                longWatch = position.coords.longitude;
+        //        latWatch = position.coords.latitude;
+        //        longWatch = position.coords.longitude;
 
-                var latlng = new google.maps.LatLng(
-                                    position.coords.latitude,
-                                    position.coords.longitude);
-                var geoCoder = new google.maps.Geocoder();
-                geoCoder.geocode({ location: latlng }, deferred.resolve);
+        //        var latlng = new google.maps.LatLng(
+        //                            position.coords.latitude,
+        //                            position.coords.longitude);
+        //        var geoCoder = new google.maps.Geocoder();
+        //        geoCoder.geocode({ location: latlng }, deferred.resolve);
 
-                return deferred.promise();
-            };
+        //        return deferred.promise();
+        //    };
 
-            var displayResultsWatch = function (results, status) {
-                //alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
-                var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
-                elementEmailTypOf.innerHTML = 'Update';
-                var element = document.getElementById('textareaEmergencyEmail');
-                element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latWatch + "+" + longWatch;
-                GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
-                var element = document.getElementById('LiWhereAmINow');
-                element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
-                                    'Longitude: ' + position.coords.longitude + '<br />' +
-                                    '<hr />' + element.innerHTML;
-            };
+        //    var displayResultsWatch = function (results, status) {
+        //        alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
+        //        var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
+        //        elementEmailTypOf.innerHTML = 'Update';
+        //        var element = document.getElementById('textareaEmergencyEmail');
+        //        element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latWatch + "+" + longWatch;
+        //        GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
+        //        var element = document.getElementById('LiWhereAmINow');
+        //        element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+        //                            'Longitude: ' + position.coords.longitude + '<br />' +
+        //                            '<hr />' + element.innerHTML;
+        //    };
 
-            $(function () {
-                $.when(getPositionWatch())
-                 .pipe(lookupCountryWatch)
-                 .then(displayResultsWatch);
-            });
+        //    $(function () {
+        //        $.when(getPositionWatch())
+        //         .pipe(lookupCountryWatch)
+        //         .then(displayResultsWatch);
+        //    });
 
-        }());
-
-        //// Throw an error if no update is received every 30 seconds
-        //var options = { timeout: 30000 };
-        //watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
+        //}());
 
         $.mobile.loading('hide');
+
+        // Throw an error if no update is received every 30 seconds
+        var options = { timeout: 10000 };
+        watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
+
     });
 
     //Email Profile Details form

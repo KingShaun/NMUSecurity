@@ -832,7 +832,7 @@ function GetADDetailsForEmergencyEmail(username, password) {
     }).done(function (msg) {
         $("#NameEmergencyEmail", formEmergencyEmail).val(msg.d.FullName);
         $("#EmailEmergencyEmail", formEmergencyEmail).val(msg.d.Email);
-        $('#FormEmergencyEmail').submit();
+        //$('#FormEmergencyEmail').submit();
 
     }).fail(function (msg) {
         navigator.notification.alert("An error has occurred.", function () { });

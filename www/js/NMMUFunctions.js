@@ -87,8 +87,8 @@ function onDeviceReady() {
      $(document).on('pageinit', '#PageLoggedInHome', function () {
 
         $(".LogoutButton").on("click", function () {
-            localStorage.clear("username");
-            localStorage.clear("password");
+            localStorage.clear("NMUusername");
+            localStorage.clear("NMUpassword");
             localStorage.clear("isStudent");
 
             $.mobile.changePage("#PageHome");
@@ -481,6 +481,8 @@ function onDeviceReady() {
 
             var displayResultsWatch = function (results, status) {
                 //alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
+                var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
+                elementEmailTypOf.innerHTML = 'Update';
                 var element = document.getElementById('textareaEmergencyEmail');
                 element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latWatch + "+" + longWatch;
                 GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
@@ -498,9 +500,9 @@ function onDeviceReady() {
 
         }());
 
-        // Throw an error if no update is received every 30 seconds
-        var options = { timeout: 30000 };
-        watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
+        //// Throw an error if no update is received every 30 seconds
+        //var options = { timeout: 30000 };
+        //watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
 
         $.mobile.loading('hide');
     });
@@ -617,9 +619,9 @@ function handleLogin() {
             if (msg.d.IsAuthenticated == true) {
 
                 //store
-                window.localStorage["username"] = u;
-                window.localStorage["password"] = p;
-                window.localStorage["isStudent"] = msg.d.IsStudent;
+                window.localStorage["NMUusername"] = u;
+                window.localStorage["NMUpassword"] = p;
+                window.localStorage["NMUisStudent"] = msg.d.IsStudent;
 
                 $("#submitButton").removeAttr("disabled");
                 //Go to My NMMU menu page
@@ -627,10 +629,10 @@ function handleLogin() {
             }
             else {
                 //Login fail and local values exist = Password has changed. Clear local values
-                if (window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
-                    localStorage.clear("username");
-                    localStorage.clear("password");
-                    localStorage.clear("isStudent");
+                if (window.localStorage["NMUusername"] != undefined && window.localStorage["NMUpassword"] != undefined) {
+                    localStorage.clear("NMUusername");
+                    localStorage.clear("NMUpassword");
+                    localStorage.clear("NMUisStudent");
                 }
                 $("#submitButton").removeAttr("disabled");
                 $.mobile.changePage("#LoginFailureDialog", { role: "dialog" });
@@ -692,15 +694,18 @@ function handleEmergencyEmail() {
     $("#submitEmergencyEmail", form).attr("disabled", "disabled");
     var user = $("#NameEmergencyEmail", form).val();
     var useremail = $("#EmailEmergencyEmail", form).val();
+    var useremailTypeOf = $("#EmailEmergencyEmailTypeOf", form).val();
     var feedback = $("#textareaEmergencyEmail", form).val();
+
+    
     var element = document.getElementById('LiEmergencyEmail');
 
     $.mobile.loading('show');
     $.ajax({
         type: "POST",
-        url: "http://webservices.nmmu.ac.za/mobileapp/Feedback.asmx/SendFeedback",
+        url: "http://webservices.nmmu.ac.za/mobileapp/EmergencyEmail.asmx/SendFeedback",
         contentType: 'application/json',
-        data: '{ yourName: "' + user + '", yourEmail: "' + useremail + '", feedback: "' + feedback + '" }',
+        data: '{ yourName: "' + user + '", yourEmail: "' + useremail + '", feedback: "' + feedback + '", yourUsername: "' + window.localStorage["NMUusername"] + '", yourTypeOf: "' + useremailTypeOf + '" }',
         dataType: "json",
         success: function (result) {
             if (result.d == "Success") {
@@ -758,13 +763,13 @@ function handleSendProfileDetails(username) {
 function checkPreAuth() {
     $.mobile.loading('show');
     var form = $("#loginForm");
-    if (window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
+    if (window.localStorage["NMUusername"] != undefined && window.localStorage["NMUpassword"] != undefined) {
 
         //Don't show the login form as it will be pre-populated
         form.css('display', 'none');
 
-        $("#username", form).val(window.localStorage["username"]);
-        $("#password", form).val(window.localStorage["password"]);
+        $("#username", form).val(window.localStorage["NMUusername"]);
+        $("#password", form).val(window.localStorage["NMUpassword"]);
         handleLogin();
     }
     else {

@@ -318,7 +318,7 @@ function onDeviceReady() {
                 var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
                 elementEmailTypOf.innerHTML = 'Update';
                 var element = document.getElementById('textareaEmergencyEmail');
-                element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + "+" + position.coords.longitude;
+                element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + "+" + position.coords.longitude;
                 GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
     }
 

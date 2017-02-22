@@ -311,10 +311,10 @@ function onDeviceReady() {
     // onSuccessWatch Geolocation
     //
     function onSuccessWatch(position) {
-        //var element = document.getElementById('LiWhereAmINow');
-        //element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
-        //                    'Longitude: ' + position.coords.longitude + '<br />' +
-        //                    '<hr />' + element.innerHTML;
+        var element = document.getElementById('LiWhereAmINow');
+        element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                            'Longitude: ' + position.coords.longitude + '<br />' +
+                            '<hr />' + element.innerHTML;
                 var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
                 elementEmailTypOf.innerHTML = 'Update';
                 var element = document.getElementById('textareaEmergencyEmail');

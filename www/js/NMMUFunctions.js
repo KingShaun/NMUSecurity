@@ -332,7 +332,7 @@ function onDeviceReady() {
     $(document).on("pagebeforeshow", "#PageLoggedInHome", function () {
         //Get user's location
         $.mobile.loading('show');
-        navigator.geolocation.getCurrentPosition(locwhereamiSuccess, locwhereamiError, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true });
+        navigator.geolocation.getCurrentPosition(locwhereamiSuccess, locwhereamiError, { maximumAge: 60000, timeout: 10000, enableHighAccuracy: true });
         $.mobile.loading('hide');
         //navigator.geolocation.getCurrentPosition(onSuccess, onError);
     });
@@ -510,7 +510,7 @@ function onDeviceReady() {
         $.mobile.loading('hide');
 
         // Throw an error if no update is received every 30 seconds
-        var options = { timeout: 10000 };
+        var options = { maximumAge: 60000, timeout: 10000, enableHighAccuracy: true };
         watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
 
     });

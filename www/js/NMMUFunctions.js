@@ -318,15 +318,19 @@ function onDeviceReady() {
                 var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
                 elementEmailTypOf.innerHTML = 'Update';
                 var element = document.getElementById('textareaEmergencyEmail');
-                element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + latWatch + "+" + longWatch;
+                element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + "+" + position.coords.longitude;
                 GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
     }
 
     // onErrorWatch Callback receives a PositionError object
     //
     function onErrorWatch(error) {
-        alert('code: ' + error.code + '\n' +
-              'message: ' + error.message + '\n');
+        //alert('code: ' + error.code + '\n' +
+        //      'message: ' + error.message + '\n');
+        var element = document.getElementById('LiWhereAmINow');
+        element.innerHTML = 'Error: ' + error.message + '<br />' +
+                            'Code: ' + error.code + '<br />' +
+                            '<hr />' + element.innerHTML;
     }
 
     $(document).on("pagebeforeshow", "#PageLoggedInHome", function () {
@@ -510,8 +514,9 @@ function onDeviceReady() {
         $.mobile.loading('hide');
 
         // Throw an error if no update is received every 30 seconds
-        var options = { maximumAge: 60000, timeout: 10000, enableHighAccuracy: true };
-        watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
+        //var options = { maximumAge: 60000, timeout: 10000, enableHighAccuracy: true };
+        //watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
+        watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch);
 
     });
 

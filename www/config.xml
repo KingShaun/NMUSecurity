@@ -3,7 +3,7 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.helloworld"
+        id        = "za.ac.nmmu.nmusecurity"
         version   = "1.0.0">
 
     <name>NMU Security</name>
@@ -41,7 +41,7 @@
     <preference name="StatusBarBackgroundColor" value="#000000" />	    <!-- Prevent to app from overlaying the iPhone status bar -->
     <!--
         Define a specific version of PhoneGap to build into your app.    -->
-        <preference name="phonegap-version"       value="3.5.0" />
+        <preference name="phonegap-version"       value="6.5.0" />
 
 
     <!-- Plugins -->

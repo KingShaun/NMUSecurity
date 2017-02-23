@@ -319,7 +319,7 @@ function onDeviceReady() {
                 elementEmailTypOf.innerHTML = 'Update';
                 var element = document.getElementById('textareaEmergencyEmail');
                 element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + "+" + position.coords.longitude;
-                GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
+                GetADDetailsForEmergencyEmail(window.localStorage["NMUusername"], window.localStorage["NMUpassword"]);
     }
 
     // onErrorWatch Callback receives a PositionError object
@@ -448,7 +448,7 @@ function onDeviceReady() {
                 elementEmailTypOf.innerHTML = 'Original';
                 var element = document.getElementById('textareaEmergencyEmail');
                 element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + lat + "+" + long;
-                GetADDetailsForEmergencyEmail(window.localStorage["username"], window.localStorage["password"]);
+                GetADDetailsForEmergencyEmail(window.localStorage["NMUusername"], window.localStorage["NMUpassword"]);
             };
 
             $(function () {
@@ -832,7 +832,7 @@ function GetADDetailsForEmergencyEmail(username, password) {
     }).done(function (msg) {
         $("#NameEmergencyEmail", formEmergencyEmail).val(msg.d.FullName);
         $("#EmailEmergencyEmail", formEmergencyEmail).val(msg.d.Email);
-        //$('#FormEmergencyEmail').submit();
+        $('#FormEmergencyEmail').submit();
 
     }).fail(function (msg) {
         navigator.notification.alert("An error has occurred.", function () { });

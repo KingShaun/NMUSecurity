@@ -9,7 +9,7 @@
     <name>NMU Security</name>
 
     <description>
-        NMU securrity application for staff and registered students.
+        NMU security application for staff and registered students.
     </description>
 
     <author href="http://www.nmmu.ac.za" email="webmaster@nmmu.ac.za">
@@ -40,9 +40,9 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000000" />	    <!-- Prevent to app from overlaying the iPhone status bar -->
     <!--
-        Define a specific version of PhoneGap to build into your app.
+        Define a specific version of PhoneGap to build into your app.    -->
         <preference name="phonegap-version"       value="3.5.0" />
-    -->
+
 
     <!-- Plugins -->
 

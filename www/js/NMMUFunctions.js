@@ -311,10 +311,10 @@ function onDeviceReady() {
     // onSuccessWatch Geolocation
     //
     function onSuccessWatch(position) {
-        var element = document.getElementById('LiWhereAmINow');
-        element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
-                            'Longitude: ' + position.coords.longitude + '<br />' +
-                            '<hr />' + element.innerHTML;
+        //var element = document.getElementById('LiWhereAmINow');
+        //element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+        //                    'Longitude: ' + position.coords.longitude + '<br />' +
+        //                    '<hr />' + element.innerHTML;
                 var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
                 elementEmailTypOf.innerHTML = 'Update';
                 var element = document.getElementById('textareaEmergencyEmail');
@@ -516,7 +516,7 @@ function onDeviceReady() {
         // Throw an error if no update is received every 30 seconds
         //var options = { maximumAge: 60000, timeout: 10000, enableHighAccuracy: true };
         //watchID = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options);
-        navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch);
+        navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, { maximumAge: 60000, timeout: 30000, enableHighAccuracy: true });
 
     });
 

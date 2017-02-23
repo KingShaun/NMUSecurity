@@ -315,8 +315,8 @@ function onDeviceReady() {
         //element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
         //                    'Longitude: ' + position.coords.longitude + '<br />' +
         //                    '<hr />' + element.innerHTML;
-                var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
-                elementEmailTypOf.innerHTML = 'Update';
+        var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
+                elementEmailTypOf.innerHTML = "Update";
                 var element = document.getElementById('textareaEmergencyEmail');
                 element.innerHTML = 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + position.coords.latitude + "+" + position.coords.longitude;
                 GetADDetailsForEmergencyEmail(window.localStorage["NMUusername"], window.localStorage["NMUpassword"]);
@@ -445,7 +445,7 @@ function onDeviceReady() {
             var displayResults = function (results, status) {
                 //alert('Results: ' + results[0].formatted_address + ' ' + lat + ' ' + long);
                 var elementEmailTypOf = document.getElementById('EmailEmergencyEmailTypeOf');
-                elementEmailTypOf.innerHTML = 'Original';
+                elementEmailTypOf.innerHTML = "Original";
                 var element = document.getElementById('textareaEmergencyEmail');
                 element.innerHTML = results[0].formatted_address + '<br /><br />' + 'http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=' + lat + "+" + long;
                 GetADDetailsForEmergencyEmail(window.localStorage["NMUusername"], window.localStorage["NMUpassword"]);

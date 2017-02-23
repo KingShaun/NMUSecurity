@@ -716,7 +716,7 @@ function handleEmergencyEmail() {
     $.mobile.loading('show');
     $.ajax({
         type: "POST",
-        url: "http://webservices.nmmu.ac.za/mobileapp/EmergencyEmail.asmx/SendFeedback",
+        url: "https://webservices.nmmu.ac.za/mobileapp/EmergencyEmail.asmx/SendFeedback",
         contentType: 'application/json',
         data: '{ yourName: "' + user + '", yourEmail: "' + useremail + '", feedback: "' + feedback + '", yourUsername: "' + window.localStorage["NMUusername"] + '", yourTypeOf: "' + useremailTypeOf + '" }',
         dataType: "json",

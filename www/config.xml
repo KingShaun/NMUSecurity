@@ -38,7 +38,7 @@
     <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#000000" />	    <!-- Prevent to app from overlaying the iPhone status bar -->
+    <preference name="StatusBarStyle" value="lightcontent" />	    <!-- Prevent to app from overlaying the iPhone status bar -->
     <!--
         Define a specific version of PhoneGap to build into your app.    -->
         <preference name='phonegap-version' value='cli-6.5.0' />
